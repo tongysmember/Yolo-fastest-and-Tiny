@@ -63,6 +63,7 @@ def postprocess(frame, outs):
 def sharper(img):
     KSIZE = 11
     ALPHA = 2
+    img = cv2.medianBlur(img,3)
     kernel = cv2.getGaussianKernel(KSIZE, 0)
     kernel = -ALPHA * kernel @ kernel.T
     kernel[KSIZE//2, KSIZE//2] += 1 + ALPHA
