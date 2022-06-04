@@ -107,9 +107,9 @@ def main():
             ret,img = cap.read()
 
             new_frame_time = time.time()
-
-            img = detect(img)
+                        
             if img is not None:
+                img = detect(img)
                 fps = 1/(new_frame_time-prev_frame_time)
                 prev_frame_time = new_frame_time
 

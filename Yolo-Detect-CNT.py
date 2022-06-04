@@ -81,8 +81,8 @@ def detect(img):
 
 def main():
 
-    #cap = cv2.VideoCapture("Taipei_Inertsection.mp4")
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture("Taipei_Inertsection.mp4")
+    #cap = cv2.VideoCapture(0)
     index = 0
 
     prev_frame_time = 0
@@ -98,16 +98,13 @@ def main():
         #if index<=500:
             ret,img = cap.read()
 
-            new_frame_time = time.time()
-
-            img = detect(img)
+            new_frame_time = time.time()            
             if img is not None:
+                img = detect(img)
                 fps = 1/(new_frame_time-prev_frame_time)
                 prev_frame_time = new_frame_time
 
-                fps = str(int(fps))
-                list_FPS.append(fps)
-                cv2.putText(img, fps, (7, 70), cv2.FONT_HERSHEY_SIMPLEX, 3, (100, 255, 0), 3, cv2.LINE_AA)                
+                cv2.putText(img, str(float(round(fps,1))), (7, 70), cv2.FONT_HERSHEY_SIMPLEX, 3, (100, 255, 0), 3, cv2.LINE_AA)                
                 cv2.imshow("Yolo-Detect",img)
         else:
             break
